@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+
+        .container {
+            width: 90%;
+            /* overflow: hidden; */
+            border: 1px solid #000;
+            margin: 200px auto;
+            overflow: hidden;
+        }
+        .parent {
+            /* width: 320px;
+            border: 2px solid #000;
+            margin: 20px; */
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-gap: 20px;
+            /* animation: move 5s linear infinite; */
+            /* overflow: hidden; */
+        }
+
+        @keyframes move {
+            0% {
+                transform: translate3d(-548px, 0px, 0px);
+            }20% {
+                transform: translate3d(-822px, 0px, 0px);
+            }50% {
+                transform: translate3d(-959px, 0px, 0px);
+            }70% {
+                transform: translate3d(-1096px, 0px, 0px);
+            }90% {
+                transform: translate3d(-1233, 0px, 0px);
+            }100% {
+
+            }
+        }
+
+        .parent > div {
+            width: 300px;
+            height: 100px;
+            margin: 10px;
+        }
+
+        .parent > div:nth-child(1) {
+            background: blue;
+        }
+
+        .parent > div:nth-child(2) {
+            background: red;
+        }
+
+        .parent > div:nth-child(3) {
+            background: orange;
+        }
+
+        .parent > div:nth-child(4) {
+            background: violet;
+        }
+
+        .parent > div:nth-child(5) {
+            background: black;
+        }
+
+        .parent > div:nth-child(6) {
+            background: grey;
+        }
+
+        div[attr="true"] {
+            width: 300px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<div class="container">
+    <div class="parent">
+        <div ></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+
+<div attr="true"></div>
+<script>
+
+
+const parenthtml = document.querySelector(".parent");
+let parentDivs = parenthtml.querySelectorAll("div");
+
+let difference = 200;
+let value = 310;
+let count = 0;
+function loop() {
+    parenthtml.style.transform = `translate3d(-${value}px, 0px, 0px)`;
+    for(var i = 0; i < parentDivs.length; i++) {
+        if(i === count) {
+            parentDivs[count].setAttribute("aria-hidden", "true")
+        }else {
+            parentDivs[i].setAttribute("aria-hidden", "false")
+        }
+            
+            
+    }
+    value = value + difference;
+    count++;
+    console.log(count)
+    if(count >= parentDivs.length) {
+        count = 0;
+    }
+    if(value >= 1096) {
+        value = 310;
+    }
+}
+
+setInterval(loop, 2000)
+
+
+</script>
+
+</body>
+</html>
